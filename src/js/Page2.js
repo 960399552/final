@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-class Search extends Component {
+class Page2 extends Component {
     render() {
         return (
             <div>
-                <h1>Search</h1>
-                <p>
-                    Here is content for Search!
-                </p>
+                {/*<h1>Page 2</h1>*/}
+                {/*<p>*/}
+                    {/*Here is content for page2!*/}
+                {/*</p>*/}
             </div>
         );
     }
@@ -25,4 +25,4 @@ const mapDispatchToProps = {};
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Search);
+)(Page2);
