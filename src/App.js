@@ -10,6 +10,8 @@ import Page2 from './js/Page2';
 // import Mail from './Mail';
 import ItemNavSidebar from './js/ItemNavSidebar';
 import itemList from './js/itemList';
+import axios from 'axios';
+
 
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -51,9 +53,6 @@ class App extends Component {
                         items: result.items
                     });
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
                     this.setState({
                         isLoaded: true,
@@ -64,9 +63,15 @@ class App extends Component {
     }
 
     render() {
-        const { items } = this.state;
+        const { error, isLoaded, items } = this.state;
     let myBanner;
-    if (this.state.isOpen) {
+
+        //if (error) {
+          //  return <div>Error: {error.message}</div>;
+        //} else
+        if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else if(this.state.isOpen) {
       myBanner = <Header banner={this.state.banner} />;
     }
     return (
@@ -99,6 +104,8 @@ class App extends Component {
           </div>
 //--------------------------------------------------------------------//
           <div className="lockin">
+
+
               <ul>
                   {items.map(item => (
                       <li key={item.name}>
@@ -107,6 +114,30 @@ class App extends Component {
                   ))}
               </ul>
           </div>
+
+            fetch('https://mywebsite.com/endpoint/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                firstParam: 'yourValue',
+                secondParam: 'yourOtherValue',
+            }),
+        });
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </Router>
     );
